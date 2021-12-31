@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = ""
+license = "MIT License"
+
+[[mods]]
+    modId = "just_dandy"
+    version = "${file.jarVersion}"
+    logoFile = "logo.png"
+    itemIcon = "just_dandy:fluffy_dandelion"
+    configBackground = "minecraft:textures/block/wool.png"
+    authors = "DavigJ"
+    credits = "DavigJ for a couple bings and bongs"
+    displayURL = ""
+    displayName = "Just Dandy"
+    description = '''
+    Adds a little visual fluff to some biomes.
+    '''
+
+[[dependencies.just_dandy]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.16.5,1.17)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.just_dandy]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[36.2.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.just_dandy]]
+    modId = "abnormals_core"
+    mandatory = true
+    versionRange = "[3.2.0,)"
+    ordering = "AFTER"
+    side = "BOTH"

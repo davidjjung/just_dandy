@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lime_dye",
+  "ingredients": [
+    {
+      "item": "just_dandy:fluffy_dandelion"
+    }
+  ],
+  "result": {
+    "item": "minecraft:lime_dye",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.davigj.just_dandy.core.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "just_dandy.refmap.json",
+  "mixins": [
+    "FlowerBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
