@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[32,)"
-issueTrackerURL = ""
+issueTrackerURL = "https://github.com/davidjjung/just_dandy/issues"
 license = "MIT License"
 
 [[mods]]
@@ -8,7 +8,7 @@ license = "MIT License"
     version = "${file.jarVersion}"
     logoFile = "logo.png"
     itemIcon = "just_dandy:fluffy_dandelion"
-    configBackground = "minecraft:textures/block/wool.png"
+    configBackground = "minecraft:textures/block/white_wool.png"
     authors = "DavigJ"
     credits = "DavigJ for a couple bings and bongs"
     displayURL = ""
