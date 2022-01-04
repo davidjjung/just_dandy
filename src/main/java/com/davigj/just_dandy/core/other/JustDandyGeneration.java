@@ -32,6 +32,5 @@ public class JustDandyGeneration {
         if (event.getCategory() == Biome.Category.TAIGA && JustDandyConfig.COMMON.taigaSpawns.get()
                 && !JustDandyConfig.COMMON.noDandyBiomes.get().contains(biome))
             generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, JustDandyFeatures.Configured.FLOWER_FLUFFY_DANDELION);
-
     }
 }

@@ -22,6 +22,7 @@ public class JustDandyConfig {
         public final ForgeConfigSpec.ConfigValue<Boolean> plainSpawns;
         public final ForgeConfigSpec.ConfigValue<Boolean> taigaSpawns;
         public final ForgeConfigSpec.ConfigValue<Double> particleSpawnMultiplier;
+        public final ForgeConfigSpec.ConfigValue<Double> particleLifetimeMultiplier;
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> fluffyDandyProlificBiomes;
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> noDandyBiomes;
         public Common(ForgeConfigSpec.Builder builder) {
@@ -30,9 +31,11 @@ public class JustDandyConfig {
             plainSpawns = builder.comment("Whether or not fluffy dandelion patches spawn in plain type biomes")
                     .define("plainSpawns", true);
             taigaSpawns = builder.comment("Whether or not fluffy dandelion patches spawn in taiga type biomes")
-                    .define("plainSpawns", false);
+                    .define("taigaSpawns", false);
             particleSpawnMultiplier = builder.comment("A multiplier for how many particles emanate from dandies in general")
                     .define("particleSpawnMultiplier", 1.0D);
+            particleLifetimeMultiplier = builder.comment("A multiplier for how long particles last upon spawn")
+                    .define("particleLifetimeMultiplier", 1.0D);
             fluffyDandyProlificBiomes = builder.comment("A list of biomes where fluffy dandelions generate more particles than normal")
                     .define("fluffyDandyProlificBiomes", new ArrayList<>(Arrays.asList("worldofwonder:dandelion_fields", "minecraft:flower_forest",
                             "minecraft:sunflower_plains")), s -> s instanceof String);
