@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "just_dandy:fluffy_dandelion"
+          "name": "minecraft:dandelion"
         }
       ],
       "conditions": [

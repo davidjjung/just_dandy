@@ -12,6 +12,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -77,5 +78,24 @@ public class FluffyDandelionFlowerBlock extends AbnormalsFlowerBlock {
             }
         }
         super.entityInside(state, worldIn, pos, entity);
+    }
+
+    public void destroy(IWorld worldIn, BlockPos pos, BlockState state) {
+        Random rand = worldIn.getRandom();
+        int numParticles = (int) (RANDOM.nextInt(5) * JustDandyConfig.COMMON.particleSpawnMultiplier.get() + 3);
+        if(JustDandyConfig.COMMON.fluffyDandyProlificBiomes.get().contains(worldIn.getBiome(pos).getRegistryName().toString())) {
+            numParticles += 3;
+        }
+        for (int i = 0; i < numParticles; i++) {
+            double offsetX = rand.nextFloat() * 0.6F;
+            double offsetZ = rand.nextFloat() * 0.45F;
+
+            double x = pos.getX() + 0.25D + offsetX;
+            double y = pos.getY() + 0.25D + (rand.nextFloat() * 0.05F);
+            double z = pos.getZ() + 0.25D + offsetZ;
+
+            if (worldIn.isClientSide() && !worldIn.getLevelData().isRaining())
+                worldIn.addParticle(this.particle.get(), x, y, z, 0.1D * (Math.random() - 0.5D), 0.0D, 0.1D * (Math.random() - 0.5D));
+        }
     }
 }
