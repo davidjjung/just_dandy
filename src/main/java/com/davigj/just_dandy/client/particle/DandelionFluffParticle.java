@@ -1,5 +1,6 @@
 package com.davigj.just_dandy.client.particle;
 
+import com.davigj.just_dandy.core.JustDandyConfig;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
@@ -12,7 +13,7 @@ public class DandelionFluffParticle extends SpriteTexturedParticle {
         this.xd = motionX;
         this.yd = motionY + (random.nextDouble() * 0.05D);
         this.zd = motionZ;
-        this.lifetime = (random.nextInt(130) * 2) + 30;
+        this.lifetime = (int)(JustDandyConfig.COMMON.particleLifetimeMultiplier.get() * (random.nextInt(130) * 2) + 30);
         this.quadSize = (float) (0.4F * Math.max(random.nextDouble(), 0.4));
         this.roll = (float) Math.random() * ((float) Math.PI * 2F) * 0.03F;
     }
