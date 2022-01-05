@@ -31,9 +31,10 @@ public class FluffyDandelionFlowerBlock extends AbnormalsFlowerBlock {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        int numParticles = (int) (RANDOM.nextInt(4) * JustDandyConfig.COMMON.particleSpawnMultiplier.get());
+        int numParticles = (int) (RANDOM.nextInt(3) * JustDandyConfig.COMMON.particleSpawnMultiplier.get());
+        int divvy = 3;
         if(JustDandyConfig.COMMON.fluffyDandyProlificBiomes.get().contains(worldIn.getBiome(pos).getRegistryName().toString())) {
-            numParticles += 3;
+            divvy -= 1;
         }
         for (int i = 0; i < numParticles; i++) {
             double offsetX = rand.nextFloat() * 0.6F;
@@ -43,8 +44,8 @@ public class FluffyDandelionFlowerBlock extends AbnormalsFlowerBlock {
             double y = pos.getY() + 0.25D + (rand.nextFloat() * 0.05F);
             double z = pos.getZ() + 0.25D + offsetZ;
 
-            if (worldIn.isClientSide && worldIn.getGameTime() % 3 == 0 && !worldIn.isRaining())
-                worldIn.addParticle(this.particle.get(), x, y, z, 0.1 * Math.random(), 0.0D, 0.1 * Math.random());
+            if (worldIn.isClientSide && worldIn.getGameTime() % divvy == 0 && !worldIn.isRaining())
+                worldIn.addParticle(this.particle.get(), x, y, z, 0.06 * Math.random(), 0.0D, 0.06 * Math.random());
         }
     }
 
