@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:plains",
+    "minecraft:forest",
+    {
+      "id": "environmental:pine_barrens",
+      "required": false
+    },
+    {
+      "id": "terralith:haze_mountain",
+      "required": false
+    }
+  ]
+}

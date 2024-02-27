@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:meadow",
+    {
+      "id": "terralith:cloud_forest",
+      "required": false
+    }
+  ]
+}

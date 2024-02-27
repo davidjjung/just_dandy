@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+  "parent": "block/flower_pot_cross",
+  "textures": {
+    "plant": "just_dandy:block/fluffy_dandelion"
+  }
+}

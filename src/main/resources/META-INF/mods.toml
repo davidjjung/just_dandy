@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = "https://github.com/davidjjung/just_dandy/issues"
+license = "MIT License"
+
+[[mods]]
+    modId = "just_dandy"
+    version = "${file.jarVersion}"
+    logoFile = "logo.png"
+    itemIcon = "just_dandy:fluffy_dandelion"
+    configBackground = "minecraft:textures/block/yellow_wool.png"
+    authors = "DavigJ"
+    credits = "Thanks to Ezekiel (Booleven) for the 1.19.2 port!"
+    displayURL = "https://modrinth.com/project/just-dandy"
+    displayName = "Just Dandy"
+    description = '''
+    Adds a little visual fluff to some biomes.
+    '''
+
+[[dependencies.just_dandy]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.19.2,1.19.3)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.just_dandy]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[43.3.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.just_dandy]]
+    modId = "blueprint"
+    mandatory = true
+    versionRange = "[6.2.0,)"
+    ordering = "AFTER"
+    side = "BOTH"
