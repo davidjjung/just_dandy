@@ -1,15 +1,17 @@
 package com.davigj.just_dandy.core;
 
-import com.davigj.just_dandy.core.data.server.modifiers.JDBiomeModifierProvider;
 import com.davigj.just_dandy.core.other.JDCompat;
 import com.davigj.just_dandy.core.registry.JDFeatures;
+import com.davigj.just_dandy.core.registry.JDItems;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -34,6 +36,8 @@ public class JustDandy {
 		MinecraftForge.EVENT_BUS.register(this);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
 
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> JDItems::buildCreativeTabContents);
+
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
@@ -52,7 +56,5 @@ public class JustDandy {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-
-		generator.addProvider(includeServer, JDBiomeModifierProvider.create(generator, helper));
 	}
 }

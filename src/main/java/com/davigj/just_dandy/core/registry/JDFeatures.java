@@ -6,10 +6,8 @@ import com.davigj.just_dandy.core.JustDandy;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -17,7 +15,6 @@ import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -48,7 +45,7 @@ public class JDFeatures {
     }
 
     public static final class JustDandyConfiguredFeatures {
-        public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, JustDandy.MODID);
+        public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(Registries.CONFIGURED_FEATURE, JustDandy.MODID);
 
         public static final RegistryObject<ConfiguredFeature<WeightedPatchConfiguration, ?>> FLOWER_FLUFFY_DANDELION = register("flower_fluffy_dandelion", () ->
                 new ConfiguredFeature<>(JDFeatures.WEIGHTED_PATCH.get(), weightedPatchConfig(JDBlocks.FLUFFY_DANDELION.get(),
@@ -63,7 +60,7 @@ public class JDFeatures {
     }
 
     public static final class JustDandyPlacedFeatures {
-        public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, JustDandy.MODID);
+        public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, JustDandy.MODID);
         public static final RegistryObject<PlacedFeature> FLOWER_FLUFFY_DANDELION = register("flower_fluffy_dandelion", JustDandyConfiguredFeatures.FLOWER_FLUFFY_DANDELION, RarityFilter.onAverageOnceEvery(40), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
         public static final RegistryObject<PlacedFeature> FLOWER_FREQUENT_FLUFFY_DANDELION = register("flower_frequent_fluffy_dandelion", JustDandyConfiguredFeatures.FLOWER_DENSE_FLUFFY_DANDELION, RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 

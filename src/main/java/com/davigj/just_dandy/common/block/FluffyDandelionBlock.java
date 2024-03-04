@@ -2,21 +2,18 @@ package com.davigj.just_dandy.common.block;
 
 import com.davigj.just_dandy.core.JDConfig;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
-import com.teamabnormals.blueprint.common.block.BlueprintFlowerBlock;
-import net.mehvahdjukaar.supplementaries.common.block.blocks.BellowsBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
-public class FluffyDandelionBlock extends BlueprintFlowerBlock {
+public class FluffyDandelionBlock extends FlowerBlock {
     public FluffyDandelionBlock(Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
         super(stewEffect, stewEffectDuration, properties);
     }

@@ -22,10 +22,10 @@ public class BeeGrowCropGoalMixin {
             target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z", shift = At.Shift.AFTER))
     private void growThatDandy(CallbackInfo ci) {
         BlockPos blockpos = this.this$0.blockPosition();
-        BlockState blockstate = this.this$0.level.getBlockState(blockpos);
+        BlockState blockstate = this.this$0.level().getBlockState(blockpos);
         if (blockstate.is(Blocks.DANDELION)) {
-            this.this$0.level.levelEvent(2005, blockpos, 0);
-            this.this$0.level.setBlockAndUpdate(blockpos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState());
+            this.this$0.level().levelEvent(2005, blockpos, 0);
+            this.this$0.level().setBlockAndUpdate(blockpos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState());
             ++this.this$0.numCropsGrownSincePollination;
         }
     }

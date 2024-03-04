@@ -22,6 +22,6 @@ public class JDParticleTypes {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.register(DANDELION_FLUFF.get(), DandelionFluffParticle.Factory::new);
+        event.registerSpriteSet(DANDELION_FLUFF.get(), DandelionFluffParticle.Factory::new);
     }
 }
