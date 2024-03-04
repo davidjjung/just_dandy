@@ -1,14 +1,16 @@
 package com.davigj.just_dandy.core;
 
+import com.davigj.just_dandy.core.data.server.JDDatapackBuiltinEntriesProvider;
 import com.davigj.just_dandy.core.other.JDCompat;
 import com.davigj.just_dandy.core.registry.JDFeatures;
 import com.davigj.just_dandy.core.registry.JDItems;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -18,6 +20,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod(JustDandy.MODID)
 public class JustDandy {
@@ -30,8 +34,6 @@ public class JustDandy {
 		REGISTRY_HELPER.register(bus);
 		JDParticleTypes.PARTICLE_TYPES.register(bus);
 		JDFeatures.FEATURES.register(bus);
-		JDFeatures.JustDandyPlacedFeatures.PLACED_FEATURES.register(bus);
-		JDFeatures.JustDandyConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
@@ -53,8 +55,10 @@ public class JustDandy {
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper helper = event.getExistingFileHelper();
+		PackOutput output = generator.getPackOutput();
+		CompletableFuture<Provider> provider = event.getLookupProvider();
 
 		boolean includeServer = event.includeServer();
+		generator.addProvider(includeServer, new JDDatapackBuiltinEntriesProvider(output, provider));
 	}
 }
