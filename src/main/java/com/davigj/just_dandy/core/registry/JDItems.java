@@ -9,12 +9,12 @@ import net.minecraftforge.fml.common.Mod;
 
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
-@Mod.EventBusSubscriber(modid = JustDandy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = JustDandy.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JDItems {
 	public static final ItemSubRegistryHelper HELPER = JustDandy.REGISTRY_HELPER.getItemSubHelper();
 
 	public static void buildCreativeTabContents() {
-		CreativeModeTabContentsPopulator.mod(JustDandy.MODID)
+		CreativeModeTabContentsPopulator.mod(JustDandy.MOD_ID)
 				.tab(CreativeModeTabs.NATURAL_BLOCKS)
 				.addItemsAfter(of(Items.DANDELION), JDBlocks.FLUFFY_DANDELION);
 	}

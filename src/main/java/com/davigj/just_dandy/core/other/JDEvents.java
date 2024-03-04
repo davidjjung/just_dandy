@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = JustDandy.MODID)
+@Mod.EventBusSubscriber(modid = JustDandy.MOD_ID)
 public class JDEvents {
 
     @SubscribeEvent

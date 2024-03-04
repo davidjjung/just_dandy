@@ -3,7 +3,6 @@ package com.davigj.just_dandy.core.registry;
 import com.davigj.just_dandy.common.worldgen.configuration.WeightedPatchConfiguration;
 import com.davigj.just_dandy.common.worldgen.feature.WeightedPatchFeature;
 import com.davigj.just_dandy.core.JustDandy;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -29,9 +27,9 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = JustDandy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = JustDandy.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JDFeatures {
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, JustDandy.MODID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, JustDandy.MOD_ID);
     public static final RegistryObject<Feature<WeightedPatchConfiguration>> WEIGHTED_PATCH = FEATURES.register("weighted_patch", () -> new WeightedPatchFeature(WeightedPatchConfiguration.CODEC));
 
     public static final BlockPos BLOCK_BELOW = new BlockPos(0, -1, 0);
@@ -57,7 +55,7 @@ public class JDFeatures {
         }
 
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
-            return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(JustDandy.MODID, name));
+            return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(JustDandy.MOD_ID, name));
         }
 
         public static void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, Supplier<? extends ConfiguredFeature<?, ?>> configuredFeature) {
@@ -81,7 +79,7 @@ public class JDFeatures {
 
 
         public static ResourceKey<PlacedFeature> createKey(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(JustDandy.MODID, name));
+            return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(JustDandy.MOD_ID, name));
         }
 
         public static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureHolder, PlacementModifier... modifiers) {

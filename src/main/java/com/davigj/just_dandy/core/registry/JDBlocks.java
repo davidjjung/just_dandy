@@ -14,7 +14,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = JustDandy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = JustDandy.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JDBlocks {
 	public static final BlockSubRegistryHelper HELPER = JustDandy.REGISTRY_HELPER.getBlockSubHelper();
 

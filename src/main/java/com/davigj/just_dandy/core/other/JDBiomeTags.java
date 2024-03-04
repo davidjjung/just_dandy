@@ -10,6 +10,6 @@ public class JDBiomeTags {
     public static final TagKey<Biome> HAS_FLUFFY_DANDELION = biomeTag("has_feature/has_fluffy_dandelion");
 
     private static TagKey<Biome> biomeTag(String tagName) {
-        return TagUtil.biomeTag(JustDandy.MODID, tagName);
+        return TagUtil.biomeTag(JustDandy.MOD_ID, tagName);
     }
 }

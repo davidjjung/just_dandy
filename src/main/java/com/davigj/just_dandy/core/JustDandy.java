@@ -23,10 +23,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod(JustDandy.MODID)
+@Mod(JustDandy.MOD_ID)
 public class JustDandy {
-	public static final String MODID = "just_dandy";
-	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
+	public static final String MOD_ID = "just_dandy";
+	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public JustDandy() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
