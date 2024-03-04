@@ -31,11 +31,12 @@ public class PuffUtil {
     }
 
     public static void currentPuff(BlockPos startingPos, Direction facing, Level level, float intensity, int distance) {
-        intensity = Math.min(intensity, 0.04F);
+        intensity = Math.max(intensity, 0.02F);
         RandomSource random = level.getRandom();
-        double xo = (double) (facing.getStepX() * -intensity) + (random.nextGaussian() * 0.01);
+        int flip = (facing == Direction.SOUTH || facing == Direction.EAST) ? -1 : 1;
+        double xo = (double) (facing.getStepX() * -intensity * flip) + (random.nextGaussian() * 0.01);
         double yo = (double) facing.getStepY() * -intensity;
-        double zo = (double) (facing.getStepZ() * -intensity) + (random.nextGaussian() * 0.01);
+        double zo = (double) (facing.getStepZ() * -intensity * flip) + (random.nextGaussian() * 0.01);
         for (int i = 1; i <= distance; i++) {
             if (random.nextInt(i + 1) == i) {
                 BlockPos facingPos = startingPos.relative(facing, i);
