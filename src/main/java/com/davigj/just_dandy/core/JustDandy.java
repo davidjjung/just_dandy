@@ -64,5 +64,6 @@ public class JustDandy {
 		boolean server = event.includeServer();
 		generator.addProvider(server, new JDDatapackBuiltinEntriesProvider(output, provider));
 		generator.addProvider(server, new JDBiomeTagsProvider(output, provider, helper));
+//		generator.addProvider(server, new JDDataRemolderProvider(output, provider));
 	}
 }

@@ -1,3 +1,4 @@
-// 1.20.1	2024-05-29T17:51:43.8265163	Tags for minecraft:worldgen/biome mod id just_dandy
-116618f97f820c0cda7f8fee93add99e70f07468 data/just_dandy/tags/worldgen/biome/has_feature/has_fluffy_dandelion.json
-5dd8197c1cfaee53b85a9b727352fe4854226cd0 data/just_dandy/tags/worldgen/biome/has_feature/has_frequent_fluffy_dandelion.json
+// 1.20.1	2024-05-29T19:26:18.8342957	Tags for minecraft:worldgen/biome mod id just_dandy
+3582ec6d7d0ae72dfe2e7a1f5da53ef3b6da56e4 data/just_dandy/tags/worldgen/biome/has_feature/has_fluffy_dandelion.json
+c1ada0259495e91aba206e33cd2bfd3f93a7af12 data/just_dandy/tags/worldgen/biome/has_feature/has_frequent_fluffy_dandelion.json
+ed3e93cb6c8db79cd52ebb108a20616d46f04c72 data/just_dandy/tags/worldgen/biome/has_feature/has_thick_dandelion.json

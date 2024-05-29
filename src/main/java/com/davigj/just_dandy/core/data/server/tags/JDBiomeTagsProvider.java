@@ -22,5 +22,6 @@ public class JDBiomeTagsProvider extends BiomeTagsProvider {
                 .addOptional(HAZE_MOUNTAIN).addOptional(PINE_BARRENS);
         this.tag(JDBiomeTags.HAS_FREQUENT_FLUFFY_DANDELION).add(MEADOW).addOptional(CLOUD_FOREST)
                 .addOptional(DANDELION_FIELDS);
+        this.tag(JDBiomeTags.HAS_THICK_DANDELION).addOptional(DANDELION_FIELDS);
     }
 }

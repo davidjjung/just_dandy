@@ -1,12 +1,17 @@
 package com.davigj.just_dandy.common.util;
 
+import codyhuh.worldofwonder.common.block.DandelionFluffBlock;
+import codyhuh.worldofwonder.init.WonderBlocks;
 import com.davigj.just_dandy.common.block.FluffyDandelionBlock;
+import com.davigj.just_dandy.core.mixin.DandelionFluffBlockMixin;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.ModList;
 
 public class PuffUtil {
     // TODO: Add compat to fluff blocks
@@ -15,13 +20,15 @@ public class PuffUtil {
         for (int i = 1; i <= 5; i++) {
             BlockPos facingPos = startingPos.relative(facing, i);
             BlockState frontState = level.getBlockState(facingPos);
-            if (frontState.getBlock() instanceof FluffyDandelionBlock) {
+            if ((frontState.getBlock() instanceof FluffyDandelionBlock) ||
+                    (ModList.get().isLoaded("worldofwonder") && frontState.getBlock() instanceof DandelionFluffBlock)) {
                 double xo = (double) facing.getStepX();
                 double yo = (double) facing.getStepY();
                 double zo = (double) facing.getStepZ();
-                double x = xo * 0.5 + (double) facingPos.getX() + 0.5 + ((double) level.random.nextFloat() - 0.5) / 3.0;
-                double y = yo * 0.5 + (double) facingPos.getY() + 0.5 + ((double) level.random.nextFloat() - 0.5) / 3.0;
-                double z = zo * 0.5 + (double) facingPos.getZ() + 0.5 + ((double) level.random.nextFloat() - 0.5) / 3.0;
+                RandomSource random = level.getRandom();
+                double x = xo * 0.5 + (double) facingPos.getX() + 0.5 + ((double) random.nextFloat() - 0.5) / 3.0;
+                double y = yo * 0.5 + (double) facingPos.getY() + 0.5 + ((double) random.nextFloat() - 0.5) / 3.0;
+                double z = zo * 0.5 + (double) facingPos.getZ() + 0.5 + ((double) random.nextFloat() - 0.5) / 3.0;
                 double vel = (double) (0.125F + level.random.nextFloat() * 0.2F);
                 double velX = xo * vel;
                 double velY = yo * vel;
@@ -36,13 +43,18 @@ public class PuffUtil {
         double xo = (double) (Math.abs(facing.getStepX()) * intensity) + (random.nextGaussian() * 0.01);
         double yo = (double) Math.abs(facing.getStepY()) * intensity;
         double zo = (double) (Math.abs(facing.getStepZ()) * intensity) + (random.nextGaussian() * 0.01);
-        for (int i = 1; i <= distance; i++) {
+        for (int i = 1; i <= distance + 1; i++) {
             if (random.nextInt(i + 1) == i) {
                 BlockPos facingPos = startingPos.relative(facing, i);
                 BlockState frontState = level.getBlockState(facingPos);
                 if (frontState.getBlock() instanceof FluffyDandelionBlock) {
                     level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(),
                             facingPos.getX() + 0.5, facingPos.getY() + 0.5, facingPos.getZ() + 0.5, xo, yo, zo);
+                } else if (ModList.get().isLoaded("worldofwonder") && frontState.is(WonderBlocks.DANDELION_FLUFF.get())) {
+                    level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(),
+                            facingPos.getX() + 0.5 + (random.nextGaussian() * 0.01),
+                            facingPos.getY() + 0.5,
+                            facingPos.getZ()+ 0.5 + (random.nextGaussian() * 0.01), xo, yo, zo);
                 }
             }
         }

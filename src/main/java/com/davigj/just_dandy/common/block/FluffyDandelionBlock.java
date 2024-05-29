@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Supplier;
@@ -27,9 +28,10 @@ public class FluffyDandelionBlock extends FlowerBlock {
             double x = pos.getX() + 0.25D + offsetX;
             double y = pos.getY() + 0.25D + (rand.nextFloat() * 0.05F);
             double z = pos.getZ() + 0.25D + offsetZ;
+            RandomSource random = level.getRandom();
 
             if (level.getGameTime() % 3 == 0 && !level.isRainingAt(pos))
-                level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z, 0.06 * Math.random(), 0.0D, 0.06 * Math.random());
+                level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z, 0.06 * random.nextFloat(), 0.0D, 0.06 * random.nextFloat());
         }
     }
 

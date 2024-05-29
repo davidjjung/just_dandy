@@ -61,7 +61,7 @@ minecraft {
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             property "blueprint.indev", "true"
-            args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources"), "--existing-mod", "blueprint"
+            args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources"), "--existing-mod", "blueprint", "--existing-mod", "terrablender", "--existing-mod", "worldofwonder"
             mods {
                 just_dandy {
                     source sourceSets.main
@@ -79,9 +79,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
     implementation fg.deobf("com.teamabnormals:blueprint:${project.minecraft}-${project.blueprint}")
 
-    compileOnly fg.deobf("maven.modrinth:moonlight:vivHKObd")
-    compileOnly fg.deobf("maven.modrinth:supplementaries:roUQhhcO")
-    compileOnly fg.deobf("maven.modrinth:create:HNYrbfZZ")
+    implementation fg.deobf("maven.modrinth:moonlight:vivHKObd")
+    implementation fg.deobf("maven.modrinth:supplementaries:roUQhhcO")
+    implementation fg.deobf("maven.modrinth:create:HNYrbfZZ")
     implementation fg.deobf("maven.modrinth:world-of-wonder:ROod5t7t")
     implementation fg.deobf("maven.modrinth:terrablender:HI0iCUpi")
 

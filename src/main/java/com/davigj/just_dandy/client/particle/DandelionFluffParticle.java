@@ -19,7 +19,7 @@ public class DandelionFluffParticle extends TextureSheetParticle {
         this.zd = motionZ;
         this.animatedSprite = animatedSprite;
         this.lifetime = random.nextInt(75) + 75;
-        this.quadSize = 0.25F * (this.random.nextFloat() * 0.5F + 0.5F);
+        this.quadSize = 0.35F * (this.random.nextFloat() * 0.5F + 0.5F);
         this.pickSprite(animatedSprite);
     }
 

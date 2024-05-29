@@ -27,6 +27,8 @@ public class JDBiomeModifierProvider {
                 GenerationStep.Decoration.VEGETAL_DECORATION, JDFeatures.JDPlacedFeatures.FLOWER_FLUFFY_DANDELION);
         addFeature(context, "flower_frequent_fluffy_dandelion", JDBiomeTags.HAS_FREQUENT_FLUFFY_DANDELION,
                 GenerationStep.Decoration.VEGETAL_DECORATION, JDFeatures.JDPlacedFeatures.FLOWER_FREQUENT_FLUFFY_DANDELION);
+        addFeature(context, "flower_thick_fluffy_dandelion", JDBiomeTags.HAS_THICK_DANDELION,
+                GenerationStep.Decoration.VEGETAL_DECORATION, JDFeatures.JDPlacedFeatures.FLOWER_THICK_FLUFFY_DANDELION);
     }
 
     @SafeVarargs

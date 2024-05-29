@@ -64,10 +64,12 @@ public class JDFeatures {
     public static final class JDPlacedFeatures {
         public static final ResourceKey<PlacedFeature> FLOWER_FLUFFY_DANDELION = createKey("flower_fluffy_dandelion");
         public static final ResourceKey<PlacedFeature> FLOWER_FREQUENT_FLUFFY_DANDELION = createKey("flower_frequent_fluffy_dandelion");
+        public static final ResourceKey<PlacedFeature> FLOWER_THICK_FLUFFY_DANDELION = createKey("flower_thick_fluffy_dandelion");
 
         public static void bootstrap(BootstapContext<PlacedFeature> context) {
             register(context, FLOWER_FLUFFY_DANDELION, JDFeatures.JDConfiguredFeatures.FLOWER_FLUFFY_DANDELION, RarityFilter.onAverageOnceEvery(40), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
             register(context, FLOWER_FREQUENT_FLUFFY_DANDELION, JDFeatures.JDConfiguredFeatures.FLOWER_DENSE_FLUFFY_DANDELION, RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+            register(context, FLOWER_THICK_FLUFFY_DANDELION, JDFeatures.JDConfiguredFeatures.FLOWER_DENSE_FLUFFY_DANDELION, RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
         }
 
         public static ResourceKey<PlacedFeature> createKey(String name) {

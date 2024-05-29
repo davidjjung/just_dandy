@@ -3,7 +3,7 @@
     "minecraft:plains",
     "minecraft:forest",
     {
-      "id": "world_of_wonder:dandelion_fields",
+      "id": "worldofwonder:dandelion_fields",
       "required": false
     },
     {

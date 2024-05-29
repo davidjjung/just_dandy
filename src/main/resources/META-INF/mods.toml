@@ -34,6 +34,6 @@ license = "MIT License"
 [[dependencies.just_dandy]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[7.0.0,)"
+    versionRange = "[7.1.0,)"
     ordering = "AFTER"
     side = "BOTH"

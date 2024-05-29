@@ -1,10 +1,5 @@
 {
   "values": [
-    "minecraft:meadow",
-    {
-      "id": "terralith:cloud_forest",
-      "required": false
-    },
     {
       "id": "worldofwonder:dandelion_fields",
       "required": false

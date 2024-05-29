@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#just_dandy:has_feature/has_thick_dandelion",
+  "features": "just_dandy:flower_thick_fluffy_dandelion",
+  "step": "vegetal_decoration"
+}
