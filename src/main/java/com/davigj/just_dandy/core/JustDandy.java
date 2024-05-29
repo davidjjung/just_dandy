@@ -1,6 +1,7 @@
 package com.davigj.just_dandy.core;
 
 import com.davigj.just_dandy.core.data.server.JDDatapackBuiltinEntriesProvider;
+import com.davigj.just_dandy.core.data.server.tags.JDBiomeTagsProvider;
 import com.davigj.just_dandy.core.other.JDCompat;
 import com.davigj.just_dandy.core.registry.JDFeatures;
 import com.davigj.just_dandy.core.registry.JDItems;
@@ -11,6 +12,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -57,8 +59,10 @@ public class JustDandy {
 		DataGenerator generator = event.getGenerator();
 		PackOutput output = generator.getPackOutput();
 		CompletableFuture<Provider> provider = event.getLookupProvider();
+		ExistingFileHelper helper = event.getExistingFileHelper();
 
-		boolean includeServer = event.includeServer();
-		generator.addProvider(includeServer, new JDDatapackBuiltinEntriesProvider(output, provider));
+		boolean server = event.includeServer();
+		generator.addProvider(server, new JDDatapackBuiltinEntriesProvider(output, provider));
+		generator.addProvider(server, new JDBiomeTagsProvider(output, provider, helper));
 	}
 }

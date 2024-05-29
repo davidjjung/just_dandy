@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PuffUtil {
+    // TODO: Add compat to fluff blocks
     // Util class that handles compatibility-based particle fx because mixins not being able to hotswap wastes my time
     public static void bellowsPuff(BlockPos startingPos, Direction facing, Level level) {
         for (int i = 1; i <= 5; i++) {

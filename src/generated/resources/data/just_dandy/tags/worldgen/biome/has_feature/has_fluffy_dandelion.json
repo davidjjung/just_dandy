@@ -3,11 +3,15 @@
     "minecraft:plains",
     "minecraft:forest",
     {
-      "id": "environmental:pine_barrens",
+      "id": "world_of_wonder:dandelion_fields",
       "required": false
     },
     {
       "id": "terralith:haze_mountain",
+      "required": false
+    },
+    {
+      "id": "environmental:pine_barrens",
       "required": false
     }
   ]

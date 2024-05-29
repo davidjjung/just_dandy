@@ -4,6 +4,10 @@
     {
       "id": "terralith:cloud_forest",
       "required": false
+    },
+    {
+      "id": "world_of_wonder:dandelion_fields",
+      "required": false
     }
   ]
 }
