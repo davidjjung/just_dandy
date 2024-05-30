@@ -8,6 +8,8 @@
     "AirCurrentMixin",
     "BeeGrowCropGoalMixin",
     "BellowsBlockTileMixin",
+    "BloomMealDispenseBehaviorMixin",
+    "BrushItemMixin",
     "DandelionFluffBlockMixin"
   ],
   "injectors": {

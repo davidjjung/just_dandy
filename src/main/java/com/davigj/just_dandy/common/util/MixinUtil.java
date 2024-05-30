@@ -3,18 +3,18 @@ package com.davigj.just_dandy.common.util;
 import codyhuh.worldofwonder.common.block.DandelionFluffBlock;
 import codyhuh.worldofwonder.init.WonderBlocks;
 import com.davigj.just_dandy.common.block.FluffyDandelionBlock;
-import com.davigj.just_dandy.core.mixin.DandelionFluffBlockMixin;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.ModList;
 
-public class PuffUtil {
-    // TODO: Add compat to fluff blocks
+public class MixinUtil {
     // Util class that handles compatibility-based particle fx because mixins not being able to hotswap wastes my time
     public static void bellowsPuff(BlockPos startingPos, Direction facing, Level level) {
         for (int i = 1; i <= 5; i++) {
@@ -57,6 +57,55 @@ public class PuffUtil {
                             facingPos.getZ()+ 0.5 + (random.nextGaussian() * 0.01), xo, yo, zo);
                 }
             }
+        }
+    }
+
+
+    public static void brushUpFluff(Level level, BlockHitResult hitResult, Vec3 viewVector, HumanoidArm arm) {
+        double d0 = 3.0D;
+        int i = arm == HumanoidArm.RIGHT ? 1 : -1;
+        int j = level.getRandom().nextInt(3, 6);
+        Direction direction = hitResult.getDirection();
+        FluffDelta fluffDelta = FluffDelta.fromDirection(viewVector, direction);
+        Vec3 vec3 = hitResult.getLocation();
+        RandomSource random = level.getRandom();
+        for(int k = 0; k < j; ++k) {
+            level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(),
+                    vec3.x - (double)(direction == Direction.WEST ? 1.0E-6F : 0.0F),
+                    vec3.y,
+                    vec3.z - (double)(direction == Direction.NORTH ? 1.0E-6F : 0.0F),
+                    fluffDelta.xd() * (double)i * d0 * random.nextDouble() * 0.01 ,
+                    -0.01 - (0.025 * random.nextGaussian()),
+                    fluffDelta.zd() * (double)i * d0 * random.nextDouble() * 0.01);
+        }
+    }
+
+    record FluffDelta(double xd, double yd, double zd) {
+        public static FluffDelta fromDirection(Vec3 p_273421_, Direction p_272987_) {
+            double d0 = 0.0D;
+            FluffDelta dustDelta;
+            switch (p_272987_) {
+                case DOWN:
+                case UP:
+                    dustDelta = new FluffDelta(p_273421_.z(), 0.0D, -p_273421_.x());
+                    break;
+                case NORTH:
+                    dustDelta = new FluffDelta(1.0D, 0.0D, -0.1D);
+                    break;
+                case SOUTH:
+                    dustDelta = new FluffDelta(-1.0D, 0.0D, 0.1D);
+                    break;
+                case WEST:
+                    dustDelta = new FluffDelta(-0.1D, 0.0D, -1.0D);
+                    break;
+                case EAST:
+                    dustDelta = new FluffDelta(0.1D, 0.0D, 1.0D);
+                    break;
+                default:
+                    throw new IncompatibleClassChangeError();
+            }
+
+            return dustDelta;
         }
     }
 }

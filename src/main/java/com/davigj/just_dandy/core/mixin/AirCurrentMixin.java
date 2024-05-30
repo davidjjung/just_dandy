@@ -1,6 +1,6 @@
 package com.davigj.just_dandy.core.mixin;
 
-import com.davigj.just_dandy.common.util.PuffUtil;
+import com.davigj.just_dandy.common.util.MixinUtil;
 import com.davigj.just_dandy.core.JDConfig;
 import com.simibubi.create.content.kinetics.fan.AirCurrent;
 import net.minecraft.core.BlockPos;
@@ -22,7 +22,7 @@ public class AirCurrentMixin {
         float intensity = (float) (current.source.getSpeed() * 0.005F * JDConfig.COMMON.particleSpawnMultiplier.get());
         int distance = (int) current.maxDistance;
         if (facing != null && level != null && level.isClientSide) {
-            PuffUtil.currentPuff(pos, facing, level, intensity, distance);
+            MixinUtil.currentPuff(pos, facing, level, intensity, distance);
         }
     }
 

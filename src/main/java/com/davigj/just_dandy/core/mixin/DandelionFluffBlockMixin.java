@@ -4,7 +4,6 @@ import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -45,7 +44,7 @@ public class DandelionFluffBlockMixin extends Block {
 
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack stack) {
         super.playerDestroy(level, player, pos, state, entity, stack);
-        for (int i = 1; i < 15; i++) {
+        for (int i = 1; i < 10; i++) {
             RandomSource random = level.getRandom();
             double d0 = pos.getX() + random.nextDouble() * 0.6D + 0.3D;
             double d1 = pos.getY() + random.nextDouble() * 0.6D + 0.3D;

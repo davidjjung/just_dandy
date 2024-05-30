@@ -1,6 +1,6 @@
 package com.davigj.just_dandy.core.mixin;
 
-import com.davigj.just_dandy.common.util.PuffUtil;
+import com.davigj.just_dandy.common.util.MixinUtil;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.BellowsBlockTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,7 +18,7 @@ public class BellowsBlockTileMixin {
         BellowsBlockTile bellows = (BellowsBlockTile) (Object) this;
         if (level.random.nextFloat() < air && !waterInFront) {
             BlockPos startingPos = bellows.getBlockPos();
-            PuffUtil.bellowsPuff(startingPos, facing, level);
+            MixinUtil.bellowsPuff(startingPos, facing, level);
         }
     }
 }

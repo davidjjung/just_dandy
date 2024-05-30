@@ -2,8 +2,6 @@ package com.davigj.just_dandy.core.other;
 
 import com.davigj.just_dandy.core.registry.JDBlocks;
 import com.teamabnormals.blueprint.core.util.DataUtil;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 
 public class JDCompat {
 

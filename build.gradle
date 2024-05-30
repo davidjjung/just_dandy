@@ -79,11 +79,11 @@ dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
     implementation fg.deobf("com.teamabnormals:blueprint:${project.minecraft}-${project.blueprint}")
 
-    implementation fg.deobf("maven.modrinth:moonlight:vivHKObd")
-    implementation fg.deobf("maven.modrinth:supplementaries:roUQhhcO")
-    implementation fg.deobf("maven.modrinth:create:HNYrbfZZ")
-    implementation fg.deobf("maven.modrinth:world-of-wonder:ROod5t7t")
-    implementation fg.deobf("maven.modrinth:terrablender:HI0iCUpi")
+    compileOnly fg.deobf("maven.modrinth:moonlight:vivHKObd")
+    compileOnly fg.deobf("maven.modrinth:supplementaries:roUQhhcO")
+    compileOnly fg.deobf("maven.modrinth:create:HNYrbfZZ")
+    compileOnly fg.deobf("maven.modrinth:world-of-wonder:ROod5t7t")
+    compileOnly fg.deobf("maven.modrinth:terrablender:HI0iCUpi")
 
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-common-api:${project.jei}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge-api:${project.jei}")
