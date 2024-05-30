@@ -27,7 +27,7 @@ license = "MIT License"
 [[dependencies.just_dandy]]
     modId = "forge"
     mandatory = true
-    versionRange = "[47.1,)"
+    versionRange = "[47.2,)"
     ordering = "NONE"
     side = "BOTH"
 

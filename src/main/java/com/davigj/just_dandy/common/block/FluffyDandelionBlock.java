@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.ModList;
 
 import java.util.function.Supplier;
 
@@ -30,8 +31,15 @@ public class FluffyDandelionBlock extends FlowerBlock {
             double z = pos.getZ() + 0.25D + offsetZ;
             RandomSource random = level.getRandom();
 
-            if (level.getGameTime() % 3 == 0 && !level.isRainingAt(pos))
-                level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z, 0.06 * random.nextFloat(), 0.0D, 0.06 * random.nextFloat());
+            if (level.getGameTime() % 3 == 0 && !level.isRainingAt(pos)) {
+                double xd = 0.06 * random.nextFloat();
+                double zd = 0.06 * random.nextFloat();
+                if (ModList.get().isLoaded("breezy")) {
+                    xd = random.nextGaussian() * 0.015;
+                    zd = random.nextGaussian() * 0.015;
+                }
+                level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z, xd, 0.0D, zd);
+            }
         }
     }
 

@@ -1,25 +1,29 @@
 package com.davigj.just_dandy.client.particle;
 
+import codyhuh.breezy.common.WindDirectionSavedData;
+import codyhuh.breezy.networking.BreezyNetworking;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
 
 @OnlyIn(Dist.CLIENT)
 public class DandelionFluffParticle extends TextureSheetParticle {
-    double rand = Math.random() - 0.5D;
+    double rand = this.random.nextGaussian();
     protected final SpriteSet animatedSprite;
 
     public DandelionFluffParticle(SpriteSet animatedSprite, ClientLevel world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ) {
         super(world, posX, posY, posZ, motionX, motionY, motionZ);
         this.xd = motionX;
-        this.yd = motionY + (random.nextDouble() * 0.05D);
         this.zd = motionZ;
+        this.yd = motionY + (random.nextDouble() * 0.05D);
         this.animatedSprite = animatedSprite;
         this.lifetime = random.nextInt(75) + 75;
-        this.quadSize = 0.35F * (this.random.nextFloat() * 0.5F + 0.5F);
+        this.quadSize = 0.3F * (this.random.nextFloat() * 0.5F + 0.5F);
         this.pickSprite(animatedSprite);
     }
 
@@ -31,20 +35,33 @@ public class DandelionFluffParticle extends TextureSheetParticle {
         this.age++;
         if (this.age >= this.lifetime) {
             this.remove();
-        } else {
-            this.move(this.xd, this.yd, this.zd);
-            this.yd -= 0.04D * (double)this.gravity * Math.random();
-            this.yd = Math.max(this.yd, -0.1F);
-
-            this.oRoll = this.roll;
-            if (!this.onGround) {
-                this.roll += (float) (rand * 0.04 * ((double) (Math.asin(Math.sin(0.15 * this.age)))));
-            } else {
-                this.xd *= (double)0.7F;
-                this.zd *= (double)0.7F;
-            }
+            return;
         }
+        this.move(this.xd, this.yd, this.zd);
+        this.yd -= 0.04D * (double) this.gravity * this.random.nextDouble();
+        this.yd = Math.max(this.yd, -0.1F);
+
+        if (ModList.get().isLoaded("breezy")) {
+            WindDirectionSavedData data = BreezyNetworking.CLIENT_CACHE;
+            Direction wind = data.getWindDirection((int) this.y, this.level);
+            double windStrength = 0.0015;
+            this.xd += (wind.getStepX() - this.xd) * windStrength;
+            this.zd += (wind.getStepZ() - this.zd) * windStrength;
+            this.xd *= (double) 0.95F;
+            this.yd *= (double) 0.99F;
+            this.zd *= (double) 0.95F;
+        }
+
+        this.oRoll = this.roll;
+        if (!this.onGround) {
+            this.roll += (float) (rand * 0.04 * ((double) (Math.asin(Math.sin(0.15 * this.age)))));
+        } else {
+            this.xd *= (double) 0.7F;
+            this.zd *= (double) 0.7F;
+        }
+
     }
+
 
     @Override
     public ParticleRenderType getRenderType() {

@@ -26,18 +26,24 @@ public class DandelionFluffBlockMixin extends Block {
         if (ModList.get().isLoaded("worldofwonder")) {
             if (random.nextInt(8) == 0 && !level.isRainingAt(pos)) {
                 Direction direction = Direction.getRandom(random);
-                if (direction != Direction.UP) {
-                    BlockPos blockpos = pos.relative(direction);
-                    BlockState blockstate = level.getBlockState(blockpos);
-                    if (!state.canOcclude() || !blockstate.isFaceSturdy(level, blockpos, direction.getOpposite())) {
-                        double d0 = direction.getStepX() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepX() * 0.6;
-                        double d1 = direction.getStepY() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepY() * 0.6;
-                        double d2 = direction.getStepZ() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepZ() * 0.6;
-                        level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), (double) pos.getX() + d0,
-                                (double) pos.getY() + d1, (double) pos.getZ() + d2,
-                                0.06 * random.nextFloat(), -0.03, 0.06 * random.nextFloat());
+                BlockPos blockpos = pos.relative(direction);
+                BlockState blockstate = level.getBlockState(blockpos);
+                if (!state.canOcclude() || !blockstate.isFaceSturdy(level, blockpos, direction.getOpposite())) {
+                    double d0 = direction.getStepX() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepX() * 0.6;
+                    double d1 = direction.getStepY() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepY() * 0.6;
+                    double d2 = direction.getStepZ() == 0 ? random.nextDouble() : 0.5 + (double) direction.getStepZ() * 0.6;
+                    double xd = 0.06 * random.nextFloat();
+                    double yd = direction != Direction.UP ? -0.03 : -0.01;
+                    double zd = 0.06 * random.nextFloat();
+                    if (ModList.get().isLoaded("breezy")) {
+                        xd = random.nextGaussian() * 0.015;
+                        zd = random.nextGaussian() * 0.015;
                     }
+                    level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), (double) pos.getX() + d0,
+                            (double) pos.getY() + d1, (double) pos.getZ() + d2,
+                            xd, yd, 0.06 * zd);
                 }
+
             }
         }
     }
