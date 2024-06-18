@@ -1,10 +1,10 @@
 package com.davigj.just_dandy.client.particle;
 
-import codyhuh.breezy.common.WindDirectionSavedData;
-import codyhuh.breezy.networking.BreezyNetworking;
+import codyhuh.breezy.common.network.BreezyNetworking;
+import codyhuh.breezy.common.network.NewWindSavedData;
+import codyhuh.breezy.core.other.util.WindMathUtil;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,11 +42,11 @@ public class DandelionFluffParticle extends TextureSheetParticle {
         this.yd = Math.max(this.yd, -0.1F);
 
         if (ModList.get().isLoaded("breezy")) {
-            WindDirectionSavedData data = BreezyNetworking.CLIENT_CACHE;
-            Direction wind = data.getWindDirection((int) this.y, this.level);
+            NewWindSavedData data = BreezyNetworking.CLIENT_CACHE;
+            double wind = data.getWindAtHeight((int) this.y, this.level);
             double windStrength = 0.0015;
-            this.xd += (wind.getStepX() - this.xd) * windStrength;
-            this.zd += (wind.getStepZ() - this.zd) * windStrength;
+            this.xd += (WindMathUtil.stepX(wind) - this.xd) * windStrength;
+            this.zd += (WindMathUtil.stepZ(wind) - this.zd) * windStrength;
             this.xd *= (double) 0.95F;
             this.yd *= (double) 0.99F;
             this.zd *= (double) 0.95F;

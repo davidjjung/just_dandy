@@ -84,8 +84,8 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:create:HNYrbfZZ")
     compileOnly fg.deobf("maven.modrinth:world-of-wonder:ROod5t7t")
     compileOnly fg.deobf("maven.modrinth:terrablender:HI0iCUpi")
-    compileOnly fg.deobf("maven.modrinth:breezy:Dg8eYgqd")
-    compileOnly fg.deobf("maven.modrinth:geckolib:ISrpRn5q")
+    compileOnly fg.deobf("maven.modrinth:breezy:QMv1AhS4")
+    compileOnly fg.deobf("maven.modrinth:geckolib:vv4Q0406")
 
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-common-api:${project.jei}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge-api:${project.jei}")
