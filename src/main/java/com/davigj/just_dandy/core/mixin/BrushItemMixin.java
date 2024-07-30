@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import static com.davigj.just_dandy.core.other.JDConstants.FLUFF_BLOCK;
+import static com.davigj.just_dandy.core.other.JDFluffConstant.FLUFF_BLOCK;
 
 @Mixin(BrushItem.class)
 public class BrushItemMixin {
