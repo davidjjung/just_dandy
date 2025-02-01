@@ -87,6 +87,9 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:breezy:QMv1AhS4")
     compileOnly fg.deobf("maven.modrinth:geckolib:vv4Q0406")
 
+    runtimeOnly fg.deobf("maven.modrinth:serene-seasons:FW4WSjtn")
+    runtimeOnly fg.deobf("maven.modrinth:glitchcore:pYPZ5MNI")
+
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-common-api:${project.jei}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge-api:${project.jei}")
     runtimeOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge:${project.jei}")
