@@ -10,7 +10,8 @@
     "BellowsBlockTileMixin",
     "BloomMealDispenseBehaviorMixin",
     "BrushItemMixin",
-    "DandelionFluffBlockMixin"
+    "DandelionFluffBlockMixin",
+    "FlowerBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
