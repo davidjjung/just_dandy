@@ -41,7 +41,7 @@ public class JDFeatures {
             register(context, FLOWER_FLUFFY_DANDELION, JDFeatures.FLUFFY_DANDELION_PATCH.get(), grassPatch(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                             .add(JDBlocks.FLUFFY_DANDELION.get().defaultBlockState(), 20)
-                            .add(Blocks.DANDELION.defaultBlockState(), 8)), 14));
+                            .add(Blocks.DANDELION.defaultBlockState(), 12)), 14));
             register(context, FLOWER_DENSE_FLUFFY_DANDELION, JDFeatures.DENSE_FLUFFY_DANDELION_PATCH.get(), grassPatch(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                             .add(JDBlocks.FLUFFY_DANDELION.get().defaultBlockState(), 20)

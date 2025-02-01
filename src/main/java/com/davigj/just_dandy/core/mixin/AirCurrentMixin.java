@@ -16,12 +16,12 @@ public class AirCurrentMixin {
     @Inject(method = "tick", at = @At("HEAD"), remap = false)
     private void dandyCurrent(CallbackInfo ci) {
         AirCurrent current = (AirCurrent) (Object) this;
-        BlockPos pos = current.source.getAirCurrentPos();
         Direction facing = current.direction;
         Level level = current.source.getAirCurrentWorld();
-        float intensity = (float) (current.source.getSpeed() * 0.005F * JDConfig.COMMON.particleSpawnMultiplier.get());
-        int distance = (int) current.maxDistance;
-        if (facing != null && level != null && level.isClientSide) {
+        if (facing != null && level != null && level.isClientSide()) {
+            BlockPos pos = current.source.getAirCurrentPos();
+            int distance = (int) current.maxDistance;
+            float intensity = (float) (current.source.getSpeed() * 0.005F * JDConfig.CLIENT.particleSpawnMultiplier.get());
             MixinUtil.currentPuff(pos, facing, level, intensity, distance);
         }
     }

@@ -24,7 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.davigj.just_dandy.core.other.JDConstants.FLUFF_TREE;
+import static com.davigj.just_dandy.core.other.JDFluffConstants.FLUFF_TREE;
 
 @Mod.EventBusSubscriber(modid = JustDandy.MOD_ID)
 public class JDEvents {

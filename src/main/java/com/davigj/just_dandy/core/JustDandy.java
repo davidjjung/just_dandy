@@ -39,6 +39,7 @@ public class JustDandy {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, JDConfig.CLIENT_SPEC);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> JDItems::buildCreativeTabContents);
 
