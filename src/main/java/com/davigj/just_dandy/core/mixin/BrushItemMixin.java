@@ -1,6 +1,7 @@
 package com.davigj.just_dandy.core.mixin;
 
 import com.davigj.just_dandy.common.util.MixinUtil;
+import com.davigj.just_dandy.core.other.JDBlockTags;
 import com.davigj.just_dandy.core.registry.JDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.HumanoidArm;
@@ -18,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import static com.davigj.just_dandy.core.other.JDFluffConstants.FLUFF_BLOCK;
-
 @Mixin(BrushItem.class)
 public class BrushItemMixin {
 
@@ -28,7 +27,7 @@ public class BrushItemMixin {
     private void brushItUp(Level level, LivingEntity living, ItemStack stack, int remainingUseTicks, CallbackInfo ci,
                            Player $$5, HitResult $$6, BlockHitResult blockHitResult, int $$9, boolean $$10, BlockPos pos,
                            BlockState state, HumanoidArm arm) {
-        if (state.is(FLUFF_BLOCK) || state.is(JDBlocks.POTTED_FLUFFY_DANDELION.get())) {
+        if (state.is(JDBlockTags.FLUFFY_BLOCKS)) {
             MixinUtil.brushUpFluff(level, blockHitResult, $$5.getViewVector(0.0F), arm);
         }
     }
