@@ -1,8 +1,7 @@
 package com.davigj.just_dandy.common.util;
 
-import codyhuh.worldofwonder.common.block.DandelionFluffBlock;
-import codyhuh.worldofwonder.core.WonderBlocks;
 import com.davigj.just_dandy.common.block.FluffyDandelionBlock;
+import com.davigj.just_dandy.core.other.JDBlockTags;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.ModList;
 
 public class MixinUtil {
     // Util class that handles compatibility-based particle fx because mixins not being able to hotswap wastes my time
@@ -21,7 +19,7 @@ public class MixinUtil {
             BlockPos facingPos = startingPos.relative(facing, i);
             BlockState frontState = level.getBlockState(facingPos);
             if ((frontState.getBlock() instanceof FluffyDandelionBlock) ||
-                    (ModList.get().isLoaded("worldofwonder") && frontState.getBlock() instanceof DandelionFluffBlock)) {
+                    (frontState.is(JDBlockTags.FULL_FLUFFY_BLOCKS))) {
                 double xo = (double) facing.getStepX();
                 double yo = (double) facing.getStepY();
                 double zo = (double) facing.getStepZ();
@@ -50,7 +48,7 @@ public class MixinUtil {
                 if (frontState.getBlock() instanceof FluffyDandelionBlock) {
                     level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(),
                             facingPos.getX() + 0.5, facingPos.getY() + 0.5, facingPos.getZ() + 0.5, xo, yo, zo);
-                } else if (ModList.get().isLoaded("worldofwonder") && frontState.is(WonderBlocks.DANDELION_FLUFF.get())) {
+                } else if (frontState.is(JDBlockTags.FULL_FLUFFY_BLOCKS)) {
                     level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(),
                             facingPos.getX() + 0.5 + (random.nextGaussian() * 0.01),
                             facingPos.getY() + 0.5,

@@ -1,19 +1,21 @@
 package com.davigj.just_dandy.core;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import com.teamabnormals.blueprint.core.annotations.ConfigKey;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class JDConfig {
-    public static final ForgeConfigSpec COMMON_SPEC;
-    public static final Common COMMON;
+    static final ModConfigSpec COMMON_SPEC;
+    public static final JDConfig.Common COMMON;
 
-    public static final ForgeConfigSpec CLIENT_SPEC;
+    static final ModConfigSpec CLIENT_SPEC;
     public static final Client CLIENT;
 
     public static class Common {
-        public final ForgeConfigSpec.ConfigValue<Boolean> dandelionsBloom;
+        @ConfigKey("dandelions_bloom")
+        public final ModConfigSpec.ConfigValue<Boolean> dandelionsBloom;
 
-        public Common(ForgeConfigSpec.Builder builder) {
+        public Common(ModConfigSpec.Builder builder) {
             builder.push("common");
             dandelionsBloom = builder.comment("Dandelions grow fluffy over time")
                     .define("growth ticks", false);
@@ -23,10 +25,10 @@ public class JDConfig {
 
 
     public static class Client {
-        public final ForgeConfigSpec.ConfigValue<Double> particleSpawnMultiplier;
-        public final ForgeConfigSpec.ConfigValue<Double> particleLifetimeMultiplier;
+        public final ModConfigSpec.ConfigValue<Double> particleSpawnMultiplier;
+        public final ModConfigSpec.ConfigValue<Double> particleLifetimeMultiplier;
 
-        public Client(ForgeConfigSpec.Builder builder) {
+        public Client(ModConfigSpec.Builder builder) {
             builder.push("client");
             particleSpawnMultiplier = builder.comment("A multiplier for how many particles emanate from dandies in general")
                     .define("particleSpawnMultiplier", 1.0);
@@ -37,11 +39,11 @@ public class JDConfig {
     }
 
     static {
-        Pair<Common, ForgeConfigSpec> commonSpecPair = (new ForgeConfigSpec.Builder()).configure(Common::new);
-        COMMON_SPEC = (ForgeConfigSpec) commonSpecPair.getRight();
+        Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
+        COMMON_SPEC = (ModConfigSpec) commonSpecPair.getRight();
         COMMON = (Common) commonSpecPair.getLeft();
 
-        Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+        Pair<Client, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(Client::new);
         CLIENT_SPEC = clientSpecPair.getRight();
         CLIENT = clientSpecPair.getLeft();
     }

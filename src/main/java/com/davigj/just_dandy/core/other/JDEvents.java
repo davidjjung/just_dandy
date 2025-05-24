@@ -1,9 +1,10 @@
 package com.davigj.just_dandy.core.other;
 
 import codyhuh.worldofwonder.common.entity.DandeLionEntity;
-import codyhuh.worldofwonder.core.WonderItems;
 import com.davigj.just_dandy.core.JustDandy;
 import com.davigj.just_dandy.core.registry.JDBlocks;
+import com.davigj.just_dandy.core.registry.JDParticleTypes;
+import com.teamabnormals.blueprint.common.network.particle.SpawnParticlesPayload;
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -16,17 +17,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.entity.player.BonemealEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-import static com.davigj.just_dandy.core.other.JDFluffConstants.FLUFF_TREE;
+import java.util.List;
 
-@Mod.EventBusSubscriber(modid = JustDandy.MOD_ID)
+@EventBusSubscriber(modid = JustDandy.MOD_ID)
 public class JDEvents {
     @SubscribeEvent
     public static void feelingDandy(BonemealEvent event) {
@@ -34,7 +34,7 @@ public class JDEvents {
         BlockPos pos = event.getPos();
         if (level.getBlockState(pos).is(Blocks.DANDELION)) {
             level.setBlock(pos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState(), 1);
-            event.setResult(Event.Result.ALLOW);
+            event.setSuccessful(true);
         }
     }
 
@@ -52,7 +52,7 @@ public class JDEvents {
     }
 
     public static void bloomMealShenanigans(Level level, ItemStack stack, BlockPos pos, BlockState state, Player player, InteractionHand hand, PlayerInteractEvent.RightClickBlock event) {
-        if (stack.getItem() == WonderItems.BLOOM_MEAL.get() && state.getBlock() == JDBlocks.FLUFFY_DANDELION.get()) {
+        if (stack.is(JDItemTags.BLOOM_MEAL) && state.getBlock() == JDBlocks.FLUFFY_DANDELION.get()) {
             if (!level.isClientSide) {
                 RandomSource random = level.random;
                 level.levelEvent(2005, pos, 0);
@@ -60,7 +60,7 @@ public class JDEvents {
                     stack.shrink(1);
                 }
                 if (random.nextInt(3) == 0) {
-                    FLUFF_TREE.growTree((ServerLevel) level, ((ServerLevel) level).getChunkSource().getGenerator(), pos, state, random);
+//                    FLUFF_TREE.growTree((ServerLevel) level, ((ServerLevel) level).getChunkSource().getGenerator(), pos, state, random);
                 }
             } else {
                 if (hand != null) {
@@ -76,7 +76,7 @@ public class JDEvents {
     @SubscribeEvent
     public static void interactDandelion(PlayerInteractEvent.EntityInteract event) {
         if (ModList.get().isLoaded("worldofwonder")) {
-            if (event.getTarget() instanceof DandeLionEntity lion && !lion.isSheared() && event.getItemStack().is(Tags.Items.SHEARS)) {
+            if (event.getTarget() instanceof DandeLionEntity lion && !lion.isSheared() && event.getItemStack().is(Tags.Items.TOOLS_SHEAR) && lion.level() instanceof ServerLevel server) {
                 Vec3 mane = lion.getEyePosition();
                 for (int i = 1; i < 5; i++) {
                     RandomSource random = lion.getRandom();
@@ -86,7 +86,7 @@ public class JDEvents {
                     double d3 = random.nextGaussian() * 0.02D;
                     double d4 = random.nextGaussian() * 0.02D;
                     double d5 = random.nextGaussian() * 0.02D;
-                    NetworkUtil.spawnParticle("just_dandy:dandelion_fluff", d0, d1, d2, d3, d4, d5);
+                    NetworkUtil.spawnParticle(server, JDParticleTypes.DANDELION_FLUFF.get(), List.of(new SpawnParticlesPayload.ParticleInstance(d0, d1, d2, d3, d4, d5)));
                 }
             }
         }

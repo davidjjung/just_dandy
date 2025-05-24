@@ -3,21 +3,25 @@ package com.davigj.just_dandy.common.block;
 import com.davigj.just_dandy.core.JDConfig;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.MushroomBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
-
-import java.util.function.Supplier;
+import net.neoforged.fml.ModList;
 
 public class FluffyDandelionBlock extends FlowerBlock {
-    public FluffyDandelionBlock(Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
-        super(stewEffect, stewEffectDuration, properties);
+    public FluffyDandelionBlock(SuspiciousStewEffects suspiciousStewEffects, BlockBehaviour.Properties properties) {
+        super(suspiciousStewEffects, properties);
+    }
+
+    public FluffyDandelionBlock(Holder<MobEffect> effect, float seconds, BlockBehaviour.Properties properties) {
+        this(makeEffectList(effect, seconds), properties);
     }
 
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {

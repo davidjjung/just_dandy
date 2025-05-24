@@ -1,9 +1,11 @@
 package com.davigj.just_dandy.core.mixin;
 
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
+import com.teamabnormals.blueprint.common.network.particle.SpawnParticlesPayload;
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -11,11 +13,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
+@Pseudo
 @Mixin(targets = "codyhuh.worldofwonder.common.block.DandelionFluffBlock")
 public class DandelionFluffBlockMixin extends Block {
     public DandelionFluffBlockMixin(Properties p_49795_) {
@@ -58,7 +63,9 @@ public class DandelionFluffBlockMixin extends Block {
             double d3 = random.nextGaussian() * 0.02D;
             double d4 = random.nextGaussian() * 0.02D;
             double d5 = random.nextGaussian() * 0.02D;
-            NetworkUtil.spawnParticle("just_dandy:dandelion_fluff", d0, d1, d2, d3, d4, d5);
+            if (level instanceof ServerLevel server) {
+                NetworkUtil.spawnParticle(server, JDParticleTypes.DANDELION_FLUFF.get(), List.of(new SpawnParticlesPayload.ParticleInstance(d0, d1, d2, d3, d4, d5)));
+            }
         }
     }
 }

@@ -1,16 +1,19 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[1,)"
 issueTrackerURL = "https://github.com/davidjjung/just_dandy/issues"
 license = "MIT License"
 
+[[mixins]]
+config = "just_dandy.mixins.json"
+
 [[mods]]
     modId = "just_dandy"
-    version = "${file.jarVersion}"
+    version = "${mod_version}"
     logoFile = "logo.png"
     itemIcon = "just_dandy:fluffy_dandelion"
     configBackground = "minecraft:textures/block/yellow_wool.png"
     authors = "DavigJ"
-    credits = "Booleven's 1.19.2 port, and Bagel for 1.20.1 worldgen assistance"
+    credits = "Booleven, bageldotjpg, gladosedition"
     displayURL = "https://modrinth.com/project/just-dandy"
     displayName = "Just Dandy"
     description = '''
@@ -19,21 +22,21 @@ license = "MIT License"
 
 [[dependencies.just_dandy]]
     modId = "minecraft"
-    mandatory = true
-    versionRange = "[1.20.1,1.21)"
-    ordering = "NONE"
+    type = "required"
+    versionRange = "[${mc_version}]"
+    ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.just_dandy]]
-    modId = "forge"
-    mandatory = true
-    versionRange = "[47.2,)"
-    ordering = "NONE"
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[${neoforge},)"
+    ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.just_dandy]]
     modId = "blueprint"
-    mandatory = true
-    versionRange = "[7.1.0,)"
+    type = "required"
+    versionRange = "[${blueprint},)"
     ordering = "AFTER"
     side = "BOTH"

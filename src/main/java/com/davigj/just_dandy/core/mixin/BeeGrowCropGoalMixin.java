@@ -1,6 +1,8 @@
 package com.davigj.just_dandy.core.mixin;
 
 import com.davigj.just_dandy.core.registry.JDBlocks;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.level.block.Blocks;
@@ -20,13 +22,15 @@ public class BeeGrowCropGoalMixin {
 
     @Inject(method = "tick", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z", shift = At.Shift.AFTER))
-    private void growThatDandy(CallbackInfo ci) {
+    private void growThatDandy(CallbackInfo ci, @Local(ordinal = 1) LocalRef<BlockState> state1) {
         BlockPos blockpos = this.this$0.blockPosition();
         BlockState blockstate = this.this$0.level().getBlockState(blockpos);
         if (blockstate.is(Blocks.DANDELION)) {
-            this.this$0.level().levelEvent(2005, blockpos, 0);
-            this.this$0.level().setBlockAndUpdate(blockpos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState());
-            ++this.this$0.numCropsGrownSincePollination;
+//            this.this$0.level().levelEvent(2005, blockpos, 0);
+//            this.this$0.level().setBlockAndUpdate(blockpos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState());
+            System.out.println("before update. should be null: " + state1.get());
+            state1.set(JDBlocks.FLUFFY_DANDELION.get().defaultBlockState());
+            System.out.println("post update. should be fluffy: " + state1.get());
         }
     }
 }

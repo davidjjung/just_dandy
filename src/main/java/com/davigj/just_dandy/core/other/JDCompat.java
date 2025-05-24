@@ -5,11 +5,11 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 
 public class JDCompat {
 
-    public static void registerCompat() {
-        registerCompostables();
+    public static void register() {
+        registerFlammables();
     }
 
-    public static void registerCompostables() {
-        DataUtil.registerCompostable(JDBlocks.FLUFFY_DANDELION.get(), 0.65F);
+    public static void registerFlammables() {
+        DataUtil.registerFlammable(JDBlocks.FLUFFY_DANDELION.get(), 60, 100);
     }
 }

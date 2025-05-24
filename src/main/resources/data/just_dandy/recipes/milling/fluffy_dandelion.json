@@ -1,8 +1,8 @@
 {
-  "conditions": [
+  "neoforge:conditions": [
     {
-      "type": "forge:mod_loaded",
-      "modid": "create"
+      "modid": "create",
+      "type": "neoforge:mod_loaded"
     }
   ],
   "type": "create:milling",

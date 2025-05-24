@@ -1,8 +1,8 @@
 {
-  "conditions": [
+  "neoforge:conditions": [
     {
-      "type": "forge:mod_loaded",
-      "modid": "farmersdelight"
+      "modid": "farmersdelight",
+      "type": "neoforge:mod_loaded"
     }
   ],
   "type": "farmersdelight:cutting",

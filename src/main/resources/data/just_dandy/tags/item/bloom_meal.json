@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "world_of_wonder:bloom_meal",
+      "required": false
+    }
+  ]
+}

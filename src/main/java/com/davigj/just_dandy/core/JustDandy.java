@@ -2,26 +2,24 @@ package com.davigj.just_dandy.core;
 
 import com.davigj.just_dandy.core.data.server.JDDatapackBuiltinEntriesProvider;
 import com.davigj.just_dandy.core.data.server.tags.JDBiomeTagsProvider;
+import com.davigj.just_dandy.core.other.JDClientCompat;
 import com.davigj.just_dandy.core.other.JDCompat;
+import com.davigj.just_dandy.core.registry.JDBlocks;
 import com.davigj.just_dandy.core.registry.JDFeatures;
-import com.davigj.just_dandy.core.registry.JDItems;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,18 +28,13 @@ public class JustDandy {
 	public static final String MOD_ID = "just_dandy";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
-	public JustDandy() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-		REGISTRY_HELPER.register(bus);
+	public JustDandy(IEventBus bus, ModContainer container) {
+		JDBlocks.BLOCKS.register(bus);
 		JDParticleTypes.PARTICLE_TYPES.register(bus);
 		JDFeatures.FEATURES.register(bus);
 
-		MinecraftForge.EVENT_BUS.register(this);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, JDConfig.CLIENT_SPEC);
-
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> JDItems::buildCreativeTabContents);
+		container.registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
+		container.registerConfig(ModConfig.Type.CLIENT, JDConfig.CLIENT_SPEC);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
@@ -49,12 +42,12 @@ public class JustDandy {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			JDCompat.registerCompat();
-		});
+		event.enqueueWork(JDCompat::register);
 	}
 
-	private void clientSetup(FMLClientSetupEvent event) {}
+	private void clientSetup(FMLClientSetupEvent event) {
+		event.enqueueWork(JDClientCompat::register);
+	}
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
@@ -66,5 +59,9 @@ public class JustDandy {
 		generator.addProvider(server, new JDDatapackBuiltinEntriesProvider(output, provider));
 		generator.addProvider(server, new JDBiomeTagsProvider(output, provider, helper));
 //		generator.addProvider(server, new JDDataRemolderProvider(output, provider));
+	}
+
+	public static ResourceLocation location(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 }

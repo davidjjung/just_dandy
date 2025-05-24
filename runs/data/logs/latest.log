@@ -1,0 +1,45 @@
+[24May2025 12:48:55.333] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--mod, just_dandy, --all, --output, E:\MC Mods\justdandy\src\generated\resources, --existing, E:\MC Mods\justdandy\src\main\resources, --existing-mod, blueprint, --launchTarget, forgedatauserdev, --assetIndex, asset-index, --assetsDir, C:\Users\David\.gradle\caches\minecraft\assets, --gameDir, ., --fml.neoForgeVersion, 21.1.129, --fml.fmlVersion, 4.0.38, --fml.mcVersion, 1.21.1, --fml.neoFormVersion, 20240808.144430]
+[24May2025 12:48:55.338] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.7+6-LTS
+[24May2025 12:48:55.340] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.4+main.d2e20e43 starting: java version 21.0.7 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[24May2025 12:48:55.538] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[24May2025 12:48:55.637] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/David/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23135!/ Service=ModLauncher Env=CLIENT
+[24May2025 12:48:55.829] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.129.jar" [locator: neoforge devenv provider ([E:\MC Mods\justdandy\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.129\neoforge-21.1.129.jar])]
+[24May2025 12:48:55.867] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.129.jar" [locator: neoforge devenv provider ([E:\MC Mods\justdandy\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.129\neoforge-21.1.129.jar])]
+[24May2025 12:48:55.892] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "main" [locator: userdev mods and services, reader: mod manifest]
+[24May2025 12:48:55.914] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.129.jar" [locator: userdev mods and services, reader: mod manifest]
+[24May2025 12:48:55.923] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "blueprint-1.21.1-8.0.6-beta4.jar" [locator: userdev mods and services, reader: mod manifest]
+[24May2025 12:48:55.931] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "jei-1.21.1-neoforge-19.21.0.247.jar" [locator: userdev mods and services, reader: mod manifest]
+[24May2025 12:48:56.026] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "mixinextras-neoforge-0.4.1.jar" [locator: userdev mods and services, reader: mod manifest]
+[24May2025 12:48:56.179] [main/WARN] [net.neoforged.jarjar.selection.JarSelector/]: Attempted to select a dependency jar for JarJar which was passed in as source: library:mixinextras.neoforge. Using Mod File: C:\Users\David\.gradle\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.4.1\eff97772ecd0dcf8e52cdbafd3b3ccec425f8314\mixinextras-neoforge-0.4.1.jar
+[24May2025 12:48:56.180] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[24May2025 12:48:56.180] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found library file "neoforge-coremods-21.1.129.jar" [parent: neoforge-21.1.129.jar, locator: jarinjar, reader: mod manifest]
+[24May2025 12:48:56.182] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Blueprint 8.0.6-beta4 (blueprint)
+		Just Dandy 3.0.0 (just_dandy)
+		Just Enough Items 19.21.0.247 (jei)
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.129 (neoforge)
+[24May2025 12:48:57.525] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[24May2025 12:48:57.546] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\David\.gradle\caches\minecraft\assets, --mod, just_dandy, --all, --output, E:\MC Mods\justdandy\src\generated\resources, --existing, E:\MC Mods\justdandy\src\main\resources, --existing-mod, blueprint, --assetIndex, asset-index]
+[24May2025 12:48:57.717] [main/WARN] [mixin/]: Reference map 'blueprint.refmap.json' for blueprint.mixins.json could not be read. If this is a development environment you can ignore this message
+[24May2025 12:48:57.719] [main/WARN] [mixin/]: Reference map 'just_dandy.refmap.json' for just_dandy.mixins.json could not be read. If this is a development environment you can ignore this message
+[24May2025 12:48:58.827] [main/WARN] [mixin/]: Error loading class: com/simibubi/create/content/kinetics/fan/AirCurrent (java.lang.ClassNotFoundException: com.simibubi.create.content.kinetics.fan.AirCurrent)
+[24May2025 12:48:58.835] [main/WARN] [mixin/]: Error loading class: net/mehvahdjukaar/supplementaries/common/block/tiles/BellowsBlockTile (java.lang.ClassNotFoundException: net.mehvahdjukaar.supplementaries.common.block.tiles.BellowsBlockTile)
+[24May2025 12:48:58.851] [main/WARN] [mixin/]: Error loading class: codyhuh/worldofwonder/common/events/ItemEvents$BloomMealDispenseBehavior (java.lang.ClassNotFoundException: codyhuh.worldofwonder.common.events.ItemEvents$BloomMealDispenseBehavior)
+[24May2025 12:48:58.865] [main/WARN] [mixin/]: Error loading class: codyhuh/worldofwonder/common/block/DandelionFluffBlock (java.lang.ClassNotFoundException: codyhuh.worldofwonder.common.block.DandelionFluffBlock)
+[24May2025 12:48:59.862] [main/INFO] [net.neoforged.neoforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [just_dandy]
+[24May2025 12:48:59.901] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[24May2025 12:49:14.761] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.129, for MC 1.21.1
+[24May2025 12:49:15.489] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[24May2025 12:49:15.506] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 10.41 ms
+[24May2025 12:49:17.509] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/E:/MC%20Mods/justdandy/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.129/neoforge-21.1.129.jar%23189!/assets/.mcassetsroot' uses unexpected schema
+[24May2025 12:49:17.514] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/E:/MC%20Mods/justdandy/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.129/neoforge-21.1.129.jar%23189!/data/.mcassetsroot' uses unexpected schema
+[24May2025 12:49:18.124] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[24May2025 12:49:19.105] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 979 ms
+[24May2025 12:49:19.105] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:worldgen/biome mod id just_dandy
+[24May2025 12:49:19.136] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:worldgen/biome mod id just_dandy finished after 31 ms
+[24May2025 12:49:19.136] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1013 ms
+[24May2025 12:49:19.164] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 14, old count: 11, new count: 12, removed stale: 3, written: 5

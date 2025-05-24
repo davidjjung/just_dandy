@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeHooks;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(FlowerBlock.class)
@@ -25,9 +24,9 @@ public abstract class FlowerBlockMixin extends BushBlock {
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (level.isAreaLoaded(pos, 1)) {
             if (JDConfig.COMMON.dandelionsBloom.get()) {
-                if (ForgeHooks.onCropsGrowPre(level, pos, state, random.nextDouble() <= 0.08)) {
+                if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(level, pos, state, random.nextDouble() <= 0.08)) {
                     level.setBlock(pos, JDBlocks.FLUFFY_DANDELION.get().defaultBlockState(), 2);
-                    ForgeHooks.onCropsGrowPost(level, pos, state);
+                    net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(level, pos, state);
                 }
             }
         }
