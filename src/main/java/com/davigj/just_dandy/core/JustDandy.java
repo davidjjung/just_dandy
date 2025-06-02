@@ -30,15 +30,16 @@ public class JustDandy {
 
 	public JustDandy(IEventBus bus, ModContainer container) {
 		JDBlocks.BLOCKS.register(bus);
+		JDBlocks.ITEMS.register(bus);
 		JDParticleTypes.PARTICLE_TYPES.register(bus);
 		JDFeatures.FEATURES.register(bus);
-
-		container.registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
-		container.registerConfig(ModConfig.Type.CLIENT, JDConfig.CLIENT_SPEC);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
+
+		container.registerConfig(ModConfig.Type.COMMON, JDConfig.COMMON_SPEC);
+		container.registerConfig(ModConfig.Type.CLIENT, JDConfig.CLIENT_SPEC);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
