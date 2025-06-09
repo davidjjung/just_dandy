@@ -4,6 +4,11 @@ import com.davigj.just_dandy.core.JDConfig;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
@@ -13,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 
 public class FluffyDandelionBlock extends FlowerBlock {
@@ -66,10 +72,27 @@ public class FluffyDandelionBlock extends FlowerBlock {
 
             if (!level.isRainingAt(pos) && entity.getDeltaMovement().length() != 0.0D) {
                 level.addParticle(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z, 0.25 * entity.getDeltaMovement().x
-                                + (0.05 * (worldrand.nextDouble() - 0.5D)), 0.0D,0.25 * entity.getDeltaMovement().z);
+                        + (0.05 * (worldrand.nextDouble() - 0.5D)), 0.0D, 0.25 * entity.getDeltaMovement().z);
             }
         }
         super.entityInside(state, level, pos, entity);
+    }
+
+    public void onNearbyExplosion(Level level, BlockPos pos) {
+        // There used to be more here but then the serverside nation attacked so now particles just go every which way i guess
+        RandomSource rand = level.getRandom();
+        int numParticles = 7 + rand.nextInt(6);
+
+        double x = pos.getX() + 0.25 + rand.nextFloat() * 0.5;
+        double y = pos.getY() + 0.25 + rand.nextFloat() * 0.25;
+        double z = pos.getZ() + 0.25 + rand.nextFloat() * 0.5;
+
+        if (level instanceof ServerLevel server) {
+            for (int i = 0; i < numParticles; i++) {
+                server.sendParticles(JDParticleTypes.DANDELION_FLUFF.get(), x, y, z,
+                        1, 0, 0, 0, 0.04 + (rand.nextDouble() * 0.025));
+            }
+        }
     }
 
 

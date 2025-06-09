@@ -1,6 +1,7 @@
 package com.davigj.just_dandy.core.other;
 
 import codyhuh.worldofwonder.common.entity.DandeLionEntity;
+import com.davigj.just_dandy.common.block.FluffyDandelionBlock;
 import com.davigj.just_dandy.core.JustDandy;
 import com.davigj.just_dandy.core.registry.JDBlocks;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
@@ -8,11 +9,13 @@ import com.teamabnormals.blueprint.common.network.particle.SpawnParticlesPayload
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +26,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.player.BonemealEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 
 import java.util.List;
 
@@ -91,4 +95,16 @@ public class JDEvents {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
+        Level level = event.getLevel();
+        for (BlockPos pos : event.getAffectedBlocks()) {
+            BlockState state = level.getBlockState(pos);
+            if (state.getBlock() instanceof FluffyDandelionBlock dandelion && level instanceof ServerLevel) {
+                dandelion.onNearbyExplosion(level, pos);
+            }
+        }
+    }
+
 }
