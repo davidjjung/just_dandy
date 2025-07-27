@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static com.davigj.just_dandy.core.other.JDEvents.bloomMealShenanigans;
 
-@Mixin(targets = "codyhuh.worldofwonder.common.events.ItemEvents$BloomMealDispenseBehavior")
+@Mixin(targets = "codyhuh.worldofwonder.core.other.WonderEvents$BloomMealDispenseBehavior")
 public class BloomMealDispenseBehaviorMixin {
     @Inject(method = "execute", at = @At("HEAD"))
     public void fluffBloom(BlockSource source, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
