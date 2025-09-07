@@ -27,6 +27,7 @@ public class JDConfig {
     public static class Client {
         public final ModConfigSpec.ConfigValue<Double> particleSpawnMultiplier;
         public final ModConfigSpec.ConfigValue<Double> particleLifetimeMultiplier;
+        public final ModConfigSpec.ConfigValue<Integer> stopFluff;
 
         public Client(ModConfigSpec.Builder builder) {
             builder.push("client");
@@ -34,6 +35,8 @@ public class JDConfig {
                     .define("particleSpawnMultiplier", 1.0);
             particleLifetimeMultiplier = builder.comment("A multiplier for how long particles last upon spawn")
                     .define("particleLifetimeMultiplier", 1.0);
+            stopFluff = builder.comment("Placing a stop_fluff_blocks block stops particles when placed up to this far below fluffy dandelions")
+                    .define("stopFluffDepth", 2);
             builder.pop();
         }
     }

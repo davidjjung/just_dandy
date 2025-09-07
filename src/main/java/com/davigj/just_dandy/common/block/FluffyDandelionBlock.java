@@ -1,14 +1,11 @@
 package com.davigj.just_dandy.common.block;
 
 import com.davigj.just_dandy.core.JDConfig;
+import com.davigj.just_dandy.core.other.JDBlockTags;
 import com.davigj.just_dandy.core.registry.JDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
@@ -18,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 
 public class FluffyDandelionBlock extends FlowerBlock {
@@ -31,11 +27,19 @@ public class FluffyDandelionBlock extends FlowerBlock {
     }
 
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
+        BlockPos freezePos = pos.below();
+        for (int i = 1; i <= JDConfig.CLIENT.stopFluff.get(); i++) {
+            if (level.getBlockState(freezePos).is(JDBlockTags.STOP_FLUFF_BLOCKS)) {
+                return;
+            } else {
+                freezePos = freezePos.below();
+            }
+        }
         if (level.isClientSide()) {
             int numParticles = (int) (rand.nextInt(3) * JDConfig.CLIENT.particleSpawnMultiplier.get());
             for (int i = 0; i < numParticles; i++) {
-                double offsetX = rand.nextFloat() * 0.6F;
-                double offsetZ = rand.nextFloat() * 0.45F;
+                double offsetX = state.getOffset(level, pos).x + rand.nextFloat() * 0.6F;
+                double offsetZ = state.getOffset(level, pos).z + rand.nextFloat() * 0.45F;
 
                 double x = pos.getX() + 0.25D + offsetX;
                 double y = pos.getY() + 0.25D + (rand.nextFloat() * 0.05F);
