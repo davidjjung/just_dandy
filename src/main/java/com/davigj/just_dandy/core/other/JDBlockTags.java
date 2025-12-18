@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.Block;
 import static com.teamabnormals.blueprint.core.util.TagUtil.blockTag;
 
 public class JDBlockTags {
-    public static final TagKey<Block> FLUFFY_BLOCKS = blockTag(JustDandy.MOD_ID, "fluffy_blocks");
     public static final TagKey<Block> FULL_FLUFFY_BLOCKS = blockTag(JustDandy.MOD_ID, "full_fluffy_blocks");
     public static final TagKey<Block> STOP_FLUFF_BLOCKS = blockTag(JustDandy.MOD_ID, "stop_fluff_blocks");
 }

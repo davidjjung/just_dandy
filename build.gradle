@@ -58,6 +58,8 @@ dependencies {
     compileOnly "maven.modrinth:breezy:QMv1AhS4"
     compileOnly "maven.modrinth:geckolib:vv4Q0406"
 
+    runtimeOnly "maven.modrinth:sage-brush:DwZRk7re"
+
 //    runtimeOnly "maven.modrinth:serene-seasons:FW4WSjtn"
 //    runtimeOnly "maven.modrinth:glitchcore:pYPZ5MNI"
 

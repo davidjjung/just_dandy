@@ -14,12 +14,7 @@
   "results": [
     {
       "item": "minecraft:lime_dye",
-      "count": 2
-    },
-    {
-      "item": "minecraft:yellow_dye",
-      "count": 2,
-      "chance": 0.1
+      "count": 3
     }
   ],
   "processingTime": 50

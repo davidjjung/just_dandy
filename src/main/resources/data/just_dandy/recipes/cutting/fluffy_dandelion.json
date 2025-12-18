@@ -15,10 +15,6 @@
     {
       "count": 2,
       "item": "minecraft:lime_dye"
-    },
-    {
-      "chance": 0.5,
-      "item": "minecraft:yellow_dye"
     }
   ],
   "tool": {

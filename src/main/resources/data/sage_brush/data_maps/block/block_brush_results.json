@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": {
+    "just_dandy:fluffy_dandelion": {
+      "particle": "just_dandy:dandelion_fluff",
+      "minCount": 1,
+      "maxCount": 3,
+      "speed": 0.3
+    },
+    "just_dandy:potted_fluffy_dandelion": {
+      "particle": "just_dandy:dandelion_fluff",
+      "minCount": 1,
+      "maxCount": 3,
+      "speed": 0.3
+    }
+  }
+}
